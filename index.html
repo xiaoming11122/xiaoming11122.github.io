@@ -1,0 +1,86 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="">
+        <title>定位</title>
+        <style>
+            html,body{
+                width: 100%;
+                height: 100%;
+            }
+            body{
+                background-image: url(./1.jpeg);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+            }
+            tr,td{
+                border: 1px solid red ;
+            }
+            td{
+                width: 30px;
+                height: 30px;
+            }
+            table{
+                background-color: orange;
+                margin: 60px auto;
+                overflow: hidden;
+                border-collapse: collapse;
+            }
+            div{
+                width: 20px;
+                height: 20px;
+                background-color: transparent;
+                margin: 5px;
+                border-radius: 50%;
+            }
+            section{
+                text-align: center;
+                padding-top: 40px;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <button onclick="btnclick(1)">白字先手</button>
+            <button onclick="btnclick(2)">黑子先手</button>
+        </section>
+    </body>
+    <script>
+        var table =document.createElement('table')
+        for(let i=0;i<15;i++){
+            let tr=document.createElement('tr')
+            for(let i=0;i<=15;i++){
+                let td=document.createElement('td')
+                let div=document.createElement('div')
+                td.appendChild(div)
+                tr.appendChild(td)
+            }
+            table.appendChild(tr)
+        }
+        document.body.appendChild(table)
+        var count=0;
+        
+        var divs=document.querySelectorAll('div')
+        for(let i=0;i<divs.length;i++){
+            divs[i].index=i
+            divs[i].onclick=function(){
+                //方法一
+                // if(count % 2 == 0){
+                //    divs[this.index].style.backgroundColor = 'black' 
+                // }else{
+                    
+                //     divs[this.index].style.backgroundColor = 'white'
+                // }
+                //方法二
+                divs[this.index].style.backgroundColor= count%2==0 ?'black':'white'
+                count++;
+                divs[this.index].onclick=btnclick=null
+            }
+        }
+        function btnclick(num){
+            count>=1?  '':count=num
+        }
+        
+    </script>
+</html>
